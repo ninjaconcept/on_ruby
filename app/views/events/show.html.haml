@@ -46,7 +46,7 @@
 
   %h2= t("show.attendees")
   - if event.participants.present?
-    = render 'home/users_list', users: event.participants.map(&:user)
+    = render 'labels/users_list', users: event.participants.map(&:user)
   - else
     %strong= t("show.no_attendees")
 

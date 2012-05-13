@@ -1,6 +1,7 @@
 # encoding: UTF-8
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  layout "whitelabel"
 
   expose(:main_user)  { User.main }
   expose(:jobs)       { Job.all.shuffle }
@@ -8,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :signed_in?, :preview_events, :tweets, :random_users
 
-  before_filter :switch_locale, :switch_label
+  before_filter :switch_locale
 
   def check_login
     redirect_to(auth_path) unless signed_in?
@@ -18,7 +19,7 @@ class ApplicationController < ActionController::Base
     options.merge locale: I18n.locale
   end
 
-  protected
+protected
 
   def authenticate_admin_user!
     unless current_user.try(:admin?)
@@ -45,10 +46,8 @@ class ApplicationController < ActionController::Base
     session[:user_id] = user.id
   end
 
-  def switch_label
-    unless Whitelabel.label_for(request.subdomains.first)
-      redirect_to(root_url(subdomain: false), alert: t("flash.no_whitelabel")) and return
-    end
+  def ensure_no_whitelabel
+    redirect_to root_url(subdomain: false) and return if request.subdomain.present?
   end
 
   def switch_locale
@@ -58,4 +57,5 @@ class ApplicationController < ActionController::Base
   def find_by_session_or_cookie
     User.find_by_id session[:user_id] || User.authenticated_with_token(*(cookies.signed[:remember_me] || ['', '']))
   end
+
 end

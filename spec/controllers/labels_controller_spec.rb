@@ -1,6 +1,8 @@
 require 'spec_helper'
 
-describe HomeController do
+describe LabelsController do
+
+  before { set_subdomain }
 
   describe "GET :index" do
     before { get :index }
@@ -9,5 +11,4 @@ describe HomeController do
       response.should render_template(:index)
     end
   end
-
 end

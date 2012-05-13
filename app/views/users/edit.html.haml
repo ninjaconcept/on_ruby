@@ -2,7 +2,7 @@
 %section
   %h3= t("profile.edit")
   %ul
-    = render 'home/users_list', users: [user]
+    = render 'labels/users_list', users: [user]
 
   = semantic_form_for user do |f|
     = f.input :name

@@ -1,0 +1,12 @@
+= section_box :events do
+  %p
+    - if current_event
+      = link_to t("label.next_meetup"), current_event, title: current_event.name
+      = raw t("label.takes_place", event_date: content_tag(:em, l(current_event.date)), location_link: link_to(current_event.location.name, current_event.location.url, title: current_event.location.name))
+    - else
+      = raw t("label.next_possible_meetup", event_date: content_tag(:em, l(next_event_date)))
+  %h3= t("label.past_events")
+  %ul.clearfix
+    - events.each do |event|
+      %li= link_to "#{l(event.date, format: :date)} - #{event.name}", event, title: event.name
+

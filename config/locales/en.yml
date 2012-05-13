@@ -36,7 +36,7 @@ en:
     attendees: "Attendees"
     no_attendees: "No Attendees."
     route: "Route"
-  home:
+  label:
     like_to_talk: "Do you want to give a Talk at the Ruby Usergroup or do you have additional Topics to talk about?"
     send_us_an_email: "Then send us an <a href='mailto:%{mail_to}'>E-Mail</a> oder ping us on Twitter:"
     engage: "Usergroups need engaging People. If you think some Topic is missing, or you want to have more Infos on something, <strong>you are encouraged to add it to our Wishlist</strong>. If you have an Idea for a Talk or anything else <strong>add it here</strong> to get instant Feedback of the Ruby / Rails Community."

@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
   def offline_login
     self.current_user = User.find_by_nickname(params[:nickname])
     redirect_to root_path, notice: "Offline Login!"

@@ -1,16 +1,16 @@
 = section_box :wishes do
   %p
-    %strong= t("home.like_to_talk")
-    = raw t("home.send_us_an_email", :mail_to => AppConfig.email)
+    %strong= t("label.like_to_talk")
+    = raw t("label.send_us_an_email", :mail_to => AppConfig.email)
   %ul
     = render 'users_list', users: organizers
-  %p= raw t("home.engage")
+  %p= raw t("label.engage")
   %p
-    = submit_tag t("home.add_topic"), name: 'new_wish', class: 'toggle'
+    = submit_tag t("label.add_topic"), name: 'new_wish', class: 'toggle'
     .toggle_new_wish.hidden
       - unless signed_in?
         %p
-          %strong= t("home.please_sign_in")
+          %strong= t("label.please_sign_in")
       %p
         = semantic_form_for Wish.new do |f|
           = f.input :name
@@ -18,7 +18,7 @@
           = f.action(:submit)
   - if wishes_undone.present?
     #undone
-      %h3= t("home.new_topics")
+      %h3= t("label.new_topics")
       %ul.undone.clearfix
         - wishes_undone.each do |wish|
           %li
@@ -26,7 +26,7 @@
             = link_to wish.name, wish, title: wish.name
   - if wishes_done.present?
     #done
-      %h3= t("home.old_topics")
+      %h3= t("label.old_topics")
       %ul.clearfix
         - wishes_done.each do |wish|
           %li

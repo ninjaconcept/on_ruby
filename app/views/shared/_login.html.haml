@@ -2,11 +2,11 @@
   -if signed_in?
     %h3= t("login.hello", nickname: current_user.nickname)
     %ul
-      %li= link_to t("login.profile"), edit_user_path(current_user)
-      %li= link_to t("login.logout"), destroy_session_path(current_user)
+      %li= link_to t("login.profile"), edit_user_url(current_user, subdomain: false)
+      %li= link_to t("login.logout"), destroy_session_url(current_user, subdomain: false)
   -else
     %ul
-      %li= link_to t("login.twitter_login"), auth_path
+      %li= link_to t("login.twitter_login"), auth_url(subdomain: false)
   #locale
     %ul
       -[:de, :en].each do |locale|

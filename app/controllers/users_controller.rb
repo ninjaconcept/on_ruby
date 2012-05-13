@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  layout "application"
 
   expose(:users) { User.ordered }
   expose(:user)
