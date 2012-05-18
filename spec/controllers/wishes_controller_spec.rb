@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe WishesController do
 
-  let(:wish) { FactoryGirl.create(:wish) }
-  let(:user) { FactoryGirl.create(:user) }
+  let(:wish) { create(:wish) }
+  let(:user) { create(:user) }
 
   before { set_subdomain }
 
@@ -17,13 +17,13 @@ describe WishesController do
   end
 
   describe "POST :create" do
-    before { FactoryGirl.create(:whitelabel) }
+    before { create(:whitelabel) }
 
     it "should create a wish for logged-in user" do
       @controller.stubs(current_user: user)
       expect {
         expect {
-          post(:create, {wish: FactoryGirl.attributes_for(:wish)})
+          post(:create, {wish: attributes_for(:wish)})
         }.to change(Vote, :count).by(1)
       }.to change(Wish, :count).by(1)
       controller.wish.user.should eql(user)
@@ -31,7 +31,7 @@ describe WishesController do
     end
 
     it "should not create a wish if not signed in" do
-      expect { post(:create, {wish: FactoryGirl.attributes_for(:wish)}) }.to change(Wish, :count).by(0)
+      expect { post(:create, {wish: attributes_for(:wish)}) }.to change(Wish, :count).by(0)
       response.should redirect_to(auth_path)
     end
   end

@@ -3,7 +3,7 @@ require "spec_helper"
 
 describe ApplicationHelper do
 
-  let(:user) { FactoryGirl.build(:user) }
+  let(:user) { build(:user) }
 
   describe "#page_title" do
     context "without Whitelabel" do
