@@ -18,9 +18,8 @@
     .container
       %header#hamburg_on_ruby
         = render 'shared/login'
-        #logo= link_to(image_tag('/assets/logo.png', alt: title, title: title), root_path)
-        %h1= link_to title, root_path
-        %h2= link_to subtitle, root_path
+        #logo= link_to image_tag('/assets/logo.png', alt: t("title")), root_path
+        %h1= link_to t("title"), root_path
       .main
         = render 'shared/hint'
         = yield

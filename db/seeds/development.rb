@@ -3,11 +3,13 @@
 Whitelabel.destroy_all
 
 hamburg = Whitelabel.create!(
-  name: 'Ruby Usergroup Hamburg',
+  name: 'Hamburg on Ruby',
+  tagline: 'Heimathafen der Hamburger Ruby Community',
   subdomain: 'hamburg')
 
 cologne = Whitelabel.create!(
   name: 'Cologne.rb',
+  tagline: 'Kölsch für Alle!',
   subdomain: 'cologne')
 
 Location.destroy_all

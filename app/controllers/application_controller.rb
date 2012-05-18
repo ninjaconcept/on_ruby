@@ -47,8 +47,8 @@ protected
   end
 
   def whitelabel
-    return @whitelabel if defined?(@whitelabel)
-    @whitelabel = Whitelabel.find_by_subdomain(request.subdomain)
+    return @whitelabel if defined?(@whitelabel)
+    @whitelabel = Whitelabel.find_by_subdomain(request.subdomain)
   end
 
   def ensure_no_whitelabel

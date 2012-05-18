@@ -4,7 +4,7 @@
     %title= page_title
 
     %meta{charset: "utf-8"}
-    %meta{name: "description", content: "#{title} - #{subtitle} - #{meta_desc}"}
+    %meta{name: "description", content: t("title")}
     %meta{name: "author", content: "Peter Schröder"}
 
     %link{rel: 'shortcut icon', href: image_path('logo_icon.png')}
@@ -22,9 +22,9 @@
     .container
       %header#hamburg_on_ruby
         = render 'shared/login'
-        #logo= link_to(image_tag('/assets/logo.png', alt: title, title: title), root_path)
-        %h1= link_to title, root_path
-        %h2= link_to subtitle, root_path
+        #logo= link_to image_tag('/assets/logo.png', alt: whitelabel.name), root_path
+        %h1= link_to whitelabel.name, root_path
+        %h2= link_to whitelabel.tagline, root_path
       %nav#nav
         = render 'shared/nav'
       .main

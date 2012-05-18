@@ -174,6 +174,7 @@ ActiveRecord::Schema.define(:version => 20120516071242) do
 
   create_table "whitelabels", :force => true do |t|
     t.string   "name"
+    t.string   "tagline"
     t.string   "subdomain"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
