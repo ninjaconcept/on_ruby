@@ -1,8 +1,9 @@
 class Highlight < ActiveRecord::Base
+  belongs_to :whitelabel
 
-  validates :description, :url, :start_at, :end_at, presence: true
+  validates :description, :url, :start_at, :end_at, :whitelabel_id, presence: true
 
-  attr_accessible :description, :url, :start_at, :end_at
+  attr_accessible :description, :url, :start_at, :end_at, :whitelabel
 
   scope :active, lambda { where('end_at > ?', Time.now).order('start_at').limit(1) }
 

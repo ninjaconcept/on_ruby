@@ -1,10 +1,22 @@
 HamburgOnRuby::Application.routes.draw do
 
+  module WithSubdomain
+    def self.matches?(request)
+      Whitelabel.find_by_subdomain(request.subdomain)
+    end
+  end
+
+  module NoSubdomain
+    def self.matches?(request)
+      request.subdomain.blank? || request.subdomain == "www"
+    end
+  end
+
   devise_for :users, ActiveAdmin::Devise.config
 
   ActiveAdmin.routes(self)
 
-  constraints(WhitelabelRoutes::LabelSubdomain) do
+  constraints(WithSubdomain) do
     resources :wishes do
       resources :votes
     end
@@ -22,10 +34,10 @@ HamburgOnRuby::Application.routes.draw do
       resources :participants
     end
 
-    match "/" => "labels#index"
+    root to: "labels#index"
   end
 
-  constraints(WhitelabelRoutes::NoSubdomain) do
+  constraints(NoSubdomain) do
     resources :users
 
     match '/auth/:provider/callback',       to: 'sessions#create'

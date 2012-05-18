@@ -17,7 +17,6 @@ gem "foreman",          "0.41.0"
 gem "decent_exposure",  "1.0.2"
 gem "geocoder",         "1.1.1"
 gem "acts_as_api",      "0.3.11"
-gem "whitelabel",       path: "vendor/gems/whitelabel"
 
 group :assets do
   gem "compass",      "0.12.alpha.4"
@@ -35,10 +34,10 @@ group :development do
 end
 
 group :development, :test do
-  gem "pry-remote",   "0.1.1"
-  gem "fuubar",       "1.0.0"
-  gem "mocha",        "0.10.5"
-  gem "sqlite3-ruby", "1.3.3", require: "sqlite3"
-  gem "rspec-rails",  "2.9.0"
-  gem "factory_girl", "3.1.0"
+  gem "pry-remote",         "0.1.1"
+  gem "fuubar",             "1.0.0"
+  gem "mocha",              "0.10.5"
+  gem "sqlite3-ruby",       "1.3.3", require: "sqlite3"
+  gem "rspec-rails",        "2.9.0"
+  gem "factory_girl_rails", "3.3.0"
 end

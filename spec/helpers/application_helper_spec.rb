@@ -1,10 +1,41 @@
 # encoding: utf-8
-
 require "spec_helper"
 
 describe ApplicationHelper do
 
   let(:user) { FactoryGirl.build(:user) }
+
+  describe "#page_title" do
+    context "without Whitelabel" do
+      before { helper.expects(:whitelabel).returns(nil) }
+
+      it "returns only the title" do
+        helper.page_title.should == t("title")
+      end
+
+      it "returns the title and page-specific content" do
+        helper.expects(:content_for?).returns(true)
+        helper.expects(:content_for).returns("Events")
+
+        helper.page_title.should == "#{t('title')} - Events"
+      end
+    end
+
+    context "with Whitelabel" do
+      before { helper.stubs(:whitelabel).returns(build(:whitelabel, name: "Hamburg on Ruby")) }
+
+      it "returns only the title" do
+        helper.page_title.should == "Hamburg on Ruby"
+      end
+
+      it "returns the title and page-specific content" do
+        helper.expects(:content_for?).returns(true)
+        helper.expects(:content_for).returns("Events")
+
+        helper.page_title.should == "Hamburg on Ruby - Events"
+      end
+    end
+  end
 
   describe "#link_to_github" do
     it "should generate the link" do
@@ -30,4 +61,5 @@ describe ApplicationHelper do
       helper.twitter_update_url('hüüllloooo http://uschi.de').should eql(url)
     end
   end
+
 end

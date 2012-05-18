@@ -13,12 +13,13 @@ class Wish < ActiveRecord::Base
     template.add :user_id
   end
 
-  validates :name, :description, :user, presence: true
+  validates :name, :description, :user, :whitelabel_id, presence: true
   validates :name, uniqueness: true
 
-  attr_accessible :name, :done, :stars, :description
+  attr_accessible :name, :done, :stars, :description, :whitelabel
 
   belongs_to :user
+  belongs_to :whitelabel
 
   has_many :votes, dependent: :destroy
 

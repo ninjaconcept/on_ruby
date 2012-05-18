@@ -7,6 +7,7 @@ class WishesController < ApplicationController
 
   def create
     wish.user = current_user
+    wish.whitelabel = whitelabel
     wish.votes << Vote.new do |v|
       v.user = current_user
       v.wish = wish

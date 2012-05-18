@@ -1,24 +1,10 @@
 module ApplicationHelper
 
-  def title
-    'Hamburg on Ruby'
-  end
-
-  def subtitle
-    t("subtitle")
-  end
-
   def page_title
     t = []
-    t << Whitelabel[:name] if Whitelabel.label
-    t << title
-    t << content_for?(:page_title) ? content_for(:page_title) : subtitle
-    t << meta_desc
+    t.append whitelabel ? whitelabel.name : t("title")
+    t.append content_for(:page_title) if content_for?(:page_title)
     t.join(' - ')
-  end
-
-  def meta_desc
-    'Ruby / Rails Usergroup Hamburg'
   end
 
   def map(locations, init={})

@@ -15,11 +15,12 @@ class Location < ActiveRecord::Base
   geocoded_by :full_address, latitude: :lat, longitude: :long
   after_validation :geocode unless Rails.env.test? # TODO (ps) disable geocoder somehow
 
+  belongs_to :whitelabel
   has_many :events
 
-  validates :name, :url, :city, :street, :house_number, :zip, presence: true
+  validates :name, :url, :city, :street, :house_number, :zip, :whitelabel_id, presence: true
 
-  attr_accessible :name, :url, :city, :street, :house_number, :zip
+  attr_accessible :name, :url, :city, :street, :house_number, :zip, :whitelabel
 
   scope :company, where(company: true)
   scope :cometogether, joins(:events).select("distinct(locations.id), locations.*")

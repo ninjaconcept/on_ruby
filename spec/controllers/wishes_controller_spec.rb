@@ -8,9 +8,7 @@ describe WishesController do
   before { set_subdomain }
 
   describe "GET :show" do
-    before do
-      get :show, id: wish.id
-    end
+    before { get :show, id: wish.id }
 
     it "should assign members" do
       controller.wish.should eql(wish)
@@ -19,13 +17,15 @@ describe WishesController do
   end
 
   describe "POST :create" do
+    before { FactoryGirl.create(:whitelabel) }
+
     it "should create a wish for logged-in user" do
       @controller.stubs(current_user: user)
-      expect do
-        expect do
+      expect {
+        expect {
           post(:create, {wish: FactoryGirl.attributes_for(:wish)})
-        end.to change(Vote, :count).by(1)
-      end.to change(Wish, :count).by(1)
+        }.to change(Vote, :count).by(1)
+      }.to change(Wish, :count).by(1)
       controller.wish.user.should eql(user)
       flash[:notice].should_not be_nil
     end

@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :highlight do
+    association :whitelabel
     description "crazy highlight"
     url         "/"
     start_at    "2012-02-24 00:00:00"

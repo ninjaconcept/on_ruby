@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   expose(:jobs)       { Job.all.shuffle }
   expose(:highlights) { Highlight.active }
 
-  helper_method :current_user, :signed_in?, :preview_events, :tweets, :random_users
+  helper_method :current_user, :whitelabel, :signed_in?, :preview_events, :tweets, :random_users
 
   before_filter :switch_locale
 
@@ -44,6 +44,11 @@ protected
   def current_user=(user)
     @current_user = user
     session[:user_id] = user.id
+  end
+
+  def whitelabel
+    return @whitelabel if defined?(@whitelabel)
+    @whitelabel = Whitelabel.find_by_subdomain(request.subdomain)
   end
 
   def ensure_no_whitelabel

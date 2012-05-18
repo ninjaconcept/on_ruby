@@ -10,6 +10,8 @@ describe "Whitelabel" do
   end
 
   describe "GET page with existing subdomain" do
+    before { create(:whitelabel) }
+
     it "shows the whitelabel" do
       get root_url(subdomain: "hamburg")
       response.should be_success

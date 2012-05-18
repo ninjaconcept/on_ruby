@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :location do
+    association :whitelabel
     name "Blau Mobilfunk GmbH"
     url "http://www.blaumobilfunk.de"
     street "Schanzenstr."

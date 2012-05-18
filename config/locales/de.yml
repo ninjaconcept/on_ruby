@@ -10,7 +10,7 @@ de:
   people: "Leute"
   wishes: "Themen"
   topics: "Themen"
-  subtitle: "Heimathafen der Hamburger Ruby Community"
+  title: "On Ruby"
   login:
     hello: "Hallo %{nickname}!"
     profile: "Profil"
