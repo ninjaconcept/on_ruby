@@ -33,10 +33,6 @@ RSpec.configure do |config|
 
   config.before { I18n.locale = :de }
 
-  config.include HttpReferer, :type => :controller
+  config.include RequestHelper, :type => :controller
   config.include FactoryGirl::Syntax::Methods
-end
-
-def set_subdomain(subdomain = "hamburg")
-  @request.host = "#{subdomain}.example.com"
 end
