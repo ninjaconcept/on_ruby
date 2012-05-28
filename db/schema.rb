@@ -42,22 +42,24 @@ ActiveRecord::Schema.define(:version => 20120516071242) do
     t.text     "description"
     t.integer  "location_id"
     t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.boolean  "published"
     t.string   "slug"
+    t.integer  "whitelabel_id", :default => 1, :null => false
   end
 
   add_index "events", ["slug"], :name => "index_events_on_slug", :unique => true
+  add_index "events", ["whitelabel_id"], :name => "index_events_on_whitelabel_id"
 
   create_table "highlights", :force => true do |t|
     t.string   "description"
     t.string   "url"
     t.datetime "start_at"
     t.datetime "end_at"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.integer  "whitelabel_id", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.integer  "whitelabel_id", :default => 1, :null => false
   end
 
   add_index "highlights", ["whitelabel_id"], :name => "index_highlights_on_whitelabel_id"
@@ -66,9 +68,9 @@ ActiveRecord::Schema.define(:version => 20120516071242) do
     t.string   "name"
     t.string   "url"
     t.integer  "location_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.integer  "whitelabel_id", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.integer  "whitelabel_id", :default => 1, :null => false
   end
 
   add_index "jobs", ["whitelabel_id"], :name => "index_jobs_on_whitelabel_id"
@@ -82,10 +84,10 @@ ActiveRecord::Schema.define(:version => 20120516071242) do
     t.string   "zip"
     t.float    "lat"
     t.float    "long"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.boolean  "company"
-    t.integer  "whitelabel_id", :null => false
+    t.integer  "whitelabel_id", :default => 1, :null => false
   end
 
   add_index "locations", ["whitelabel_id"], :name => "index_locations_on_whitelabel_id"
@@ -188,7 +190,7 @@ ActiveRecord::Schema.define(:version => 20120516071242) do
     t.datetime "updated_at",                       :null => false
     t.boolean  "done",          :default => false
     t.string   "slug"
-    t.integer  "whitelabel_id",                    :null => false
+    t.integer  "whitelabel_id", :default => 1,     :null => false
   end
 
   add_index "wishes", ["slug"], :name => "index_wishes_on_slug", :unique => true

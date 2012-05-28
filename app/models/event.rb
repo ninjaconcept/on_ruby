@@ -17,6 +17,7 @@ class Event < ActiveRecord::Base
     template.add :materials
   end
 
+  belongs_to :whitelabel
   belongs_to :location
   belongs_to :user
 
