@@ -7,9 +7,5 @@ class CreateWhitelabels < ActiveRecord::Migration
 
       t.timestamps
     end
-
-    add_index :whitelabels, :subdomain, unique: true
-
-    Whitelabel.create!(name: "Hamburg on Ruby", tagline: "Heimathafen der Hamburger Ruby Community", subdomain: "hamburg")
   end
 end
