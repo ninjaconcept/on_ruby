@@ -182,6 +182,8 @@ ActiveRecord::Schema.define(:version => 20120516071242) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "whitelabels", ["subdomain"], :name => "index_whitelabels_on_subdomain", :unique => true
+
   create_table "wishes", :force => true do |t|
     t.string   "name"
     t.text     "description"
